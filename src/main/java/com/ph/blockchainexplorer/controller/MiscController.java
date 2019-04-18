@@ -30,7 +30,6 @@ public class MiscController {
     @GetMapping("/importFromHash")
     public void importFromHash(@RequestParam String blockhash,Boolean isClean){
         miscService.importFromHash(blockhash,isClean);
-        System.out.println("111");
     }
 
     @GetMapping("/getImportState")
