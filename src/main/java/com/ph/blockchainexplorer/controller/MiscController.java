@@ -23,12 +23,14 @@ public class MiscController {
     }
 
     @GetMapping("/importFromHeight")
-    public void importFromHeight(@RequestParam Integer blockHeight,Boolean isClean){
+    public void importFromHeight(@RequestParam Integer blockHeight,
+                                 @RequestParam(required = false,defaultValue = "false") Boolean isClean){
         miscService.importFromHeight(blockHeight,isClean);
     }
 
     @GetMapping("/importFromHash")
-    public void importFromHash(@RequestParam String blockhash,Boolean isClean){
+    public void importFromHash(@RequestParam String blockhash,
+                               @RequestParam(required = false,defaultValue = "false") Boolean isClean){
         miscService.importFromHash(blockhash,isClean);
     }
 
