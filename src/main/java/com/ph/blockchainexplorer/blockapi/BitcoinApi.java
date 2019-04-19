@@ -22,7 +22,7 @@ public interface BitcoinApi {
     @GetMapping("/rest/block/{blockhash}.json")
     JSONObject getBlock(@PathVariable("blockhash") String blockhash);
 
-    //区块哈希的接口
+    //余额的接口
     @GetMapping("/rest/block/notxdetails/{blockhash}.json")
     JSONObject getNoTxBlock(@PathVariable("blockhash") String blockhash);
 
