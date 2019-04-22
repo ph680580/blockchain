@@ -1,10 +1,11 @@
 package com.ph.blockchainexplorer.dao;
 
-
 import com.ph.blockchainexplorer.entity.Transaction;
 
 public interface TransactionMapper {
     int deleteByPrimaryKey(String txid);
+
+    int truncate();
 
     int insert(Transaction record);
 

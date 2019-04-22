@@ -1,5 +1,7 @@
 package com.ph.blockchainexplorer.blockapi;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,13 @@ public class BitcoinJsonRpcClient {
         String blockhash = jsonRpcHttpClient.invoke("getblockhash", new Integer[]{blockHeight}, String.class);
         return blockhash;
 
+    }
+
+    public Double getBalance(String address) throws Throwable {
+        JSONArray balances = jsonRpcHttpClient.invoke("listunspent", new Object[]{6, 9999999, new String[]{address}}, JSONArray.class);
+        JSONObject balance = balances.getJSONObject(0);
+        Double amount = balance.getDouble("amount");
+        return amount;
     }
 
 }
