@@ -22,7 +22,7 @@ public class TempController {
     @GetMapping("/test")
     public void test() throws Throwable {
 //        JSONObject chainInfo = bitcoinApi.getChainInfo();
-//        String txhash="41f65db3b3d0e1a9cd8cf09bc09a4bea85e874f1b38616c844b45f03b74593eb";
+//        String txhash = "21c6f7de3fb8ad3e5e034b85b9ac80cdc51214bcbe5ebfed9267dd8a19e239ea";
 //        JSONObject transaction = bitcoinApi.getTransaction(txhash);
 //        String blockhash = "000000000000004b1aecd12119a19e38efdce8c385f89a5d3a7698427108a2ee";
 //        JSONObject block = bitcoinApi.getBlock(blockhash);
@@ -34,14 +34,5 @@ public class TempController {
 //        String blockHashByHeight = bitcoinJsonRpcClient.getBlockHashByHeight(1489445);
         String address = "mwt9LmdatUcksGQ8eEbKbbPnczUmTq4G9h";
         Double balanceAmount = bitcoinJsonRpcClient.getBalance(address);
-
     }
-
-
-
-
-
-
-
-
 }

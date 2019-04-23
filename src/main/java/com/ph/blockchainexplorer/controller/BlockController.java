@@ -1,6 +1,5 @@
 package com.ph.blockchainexplorer.controller;
 
-
 import com.ph.blockchainexplorer.dto.BlockDetailDTO;
 import com.ph.blockchainexplorer.dto.BlockListDTO;
 import org.springframework.web.bind.annotation.GetMapping;
