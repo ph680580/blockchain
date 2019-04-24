@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @EnableFeignClients
 @MapperScan("com.ph.blockchainexplorer.dao")
-
+@EnableAsync
 public class BlockchainexplorerApplication {
 
     public static void main(String[] args) {
