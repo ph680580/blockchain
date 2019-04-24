@@ -175,6 +175,7 @@
     where blockhash = #{blockhash,jdbcType=CHAR}
   </update>
 
+  <!--custom sql-->
   <update id="truncate">
     truncate table block;
   </update>

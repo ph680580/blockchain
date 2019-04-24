@@ -37,7 +37,8 @@ public interface BitcoinApi {
     @GetMapping("/rest/mempool/contents.json")
     JSONObject getMempoolContents();
 
-
+    @GetMapping("/rest/getutxos/{txid}-{n}.json")
+    JSONObject getUTXO(@PathVariable("txid") String txid, @PathVariable("n") Integer n);
 
 
 }
