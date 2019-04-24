@@ -10,6 +10,7 @@ import com.ph.blockchainexplorer.dao.TransactionMapper;
 import com.ph.blockchainexplorer.entity.Block;
 import com.ph.blockchainexplorer.entity.Transaction;
 import com.ph.blockchainexplorer.entity.TransactionDetail;
+import com.ph.blockchainexplorer.meiju.TransactionDetailType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

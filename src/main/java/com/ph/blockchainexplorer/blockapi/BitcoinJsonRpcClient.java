@@ -38,4 +38,14 @@ public class BitcoinJsonRpcClient {
         return amount;
     }
 
+    public JSONObject getRawTransaxtion(String txid) throws Throwable {
+        JSONObject rawTransaction = jsonRpcHttpClient.invoke("getrawtransaction", new Object[]{txid, true}, JSONObject.class);
+        return rawTransaction;
+    }
+
+    public String getBestBlockhash() throws Throwable {
+        String bestblockhash = jsonRpcHttpClient.invoke("getbestblockhash", new Object[]{}, String.class);
+        return bestblockhash;
+    }
+
 }
