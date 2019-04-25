@@ -52,42 +52,41 @@ public class BlockController {
 //            blockListDTOS.add(blockListDTO);
 //            bestBlockhash1 = block.getString("previousblockhash");
 //        }
+//        bitcoinApi.getBlockHeaders(recentCount,bestBlockhash)
 
-        JSONObject chainInfo = bitcoinApi.getChainInfo();
-        Integer height = chainInfo.getInteger("blocks");
-        height -= 6;
-        String blockHashByHeight = bitcoinJsonRpcClient.getBlockHashByHeight(height);
-        JSONArray blockHeaders = bitcoinApi.getBlockHeaders(5, blockHashByHeight);
-
-        LinkedList<BlockListDTO> blockListDTOS = new LinkedList<>();
-        for (int i = 5; i > -1; i--) {
-            JSONObject block = blockHeaders.getJSONObject(i);
-            BlockListDTO blockListDTO = new BlockListDTO();
-            blockListDTO.setHeight(block.getInteger("height"));
-            Long time = block.getLong("time");
-            Date date = new Date(time * 1000);
-            blockListDTO.setTime(date);
-            //todo add size on disk
-            blockListDTO.setTxSize(block.getInteger("nTx"));
-            blockListDTOS.add(blockListDTO);
-        }
-
-        return blockListDTOS;
-
-//        List<Block> blocks = blockMapper.selectRecent();
-//        List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
+//        JSONObject chainInfo = bitcoinApi.getChainInfo();
+//        Integer height = chainInfo.getInteger("blocks");
+//        height -= 6;
+//        String blockHashByHeight = bitcoinJsonRpcClient.getBlockHashByHeight(height);
+//        JSONArray blockHeaders = bitcoinApi.getBlockHeaders(5, blockHashByHeight);
+//
+//        LinkedList<BlockListDTO> blockListDTOS = new LinkedList<>();
+//        for (int i = 5; i > -1; i--) {
+//            JSONObject block = blockHeaders.getJSONObject(i);
 //            BlockListDTO blockListDTO = new BlockListDTO();
-//            blockListDTO.setHeight(block.getHeight());
-//            blockListDTO.setTime(block.getTime().getTime());
-//            blockListDTO.setTxSize(block.getTxSize());
-//            blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
-//            return blockListDTO;
-//        }).collect(Collectors.toList());
+//            blockListDTO.setHeight(block.getInteger("height"));
+//            Long time = block.getLong("time");
+//            Date date = new Date(time * 1000);
+//            blockListDTO.setTime(date);
+//            //todo add size on disk
+//            blockListDTO.setTxSize(block.getInteger("nTx"));
+//            blockListDTOS.add(blockListDTO);
+//        }
 //
 //        return blockListDTOS;
 
+        List<Block> blocks = blockMapper.selectRecent();
+        List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
+            BlockListDTO blockListDTO = new BlockListDTO();
+            blockListDTO.setHeight(block.getHeight());
+            blockListDTO.setTime(block.getTime().getTime());
+            blockListDTO.setTxSize(block.getTxSize());
+            blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
+            return blockListDTO;
+        }).collect(Collectors.toList());
 
-//        bitcoinApi.getBlockHeaders(recentCount,bestBlockhash)
+        return blockListDTOS;
+
     }
 
 
