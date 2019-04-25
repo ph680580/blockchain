@@ -7,7 +7,7 @@ import com.ph.blockchainexplorer.blockapi.BitcoinJsonRpcClient;
 import com.ph.blockchainexplorer.dao.BlockMapper;
 import com.ph.blockchainexplorer.dto.BlockDetailDTO;
 import com.ph.blockchainexplorer.dto.BlockListDTO;
-import com.ph.blockchainexplorer.entity.Block;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -37,22 +37,23 @@ public class BlockController {
     @GetMapping("/getRecentBlocks")
     public List<BlockListDTO> getRecentBlocks() throws Throwable {
 
-//        String bestBlockhash = bitcoinJsonRpcClient.getBestBlockhash();
-//        String bestBlockhash1 = bestBlockhash;
-//        List<BlockListDTO> blockListDTOS =new LinkedList<>();
-//        for(int i =0;i<10;i++){
-//            JSONObject block =bitcoinApi.getNoTxBlock(bestBlockhash1);
-//            BlockListDTO blockListDTO = new BlockListDTO();
-//            blockListDTO.setHeight(block.getInteger("height"));
-//            Long time = block.getLong("time");
-//            Date date = new Date(time * 1000);
-//            blockListDTO.setTime(date);
-//            blockListDTO.setTxSize(block.getJSONArray("tx").size());
-//            blockListDTO.setSizeOnDisk(block.getLong("size"));
-//            blockListDTOS.add(blockListDTO);
-//            bestBlockhash1 = block.getString("previousblockhash");
-//        }
-//        bitcoinApi.getBlockHeaders(recentCount,bestBlockhash)
+        String bestBlockhash = bitcoinJsonRpcClient.getBestBlockhash();
+        String tempBlockhash = bestBlockhash;
+
+        List<BlockListDTO> blockListDTOS = new LinkedList<>();
+
+        for (int i = 0; i < 10; i++) {
+            JSONObject block = bitcoinApi.getNoTxBlock(tempBlockhash);
+            BlockListDTO blockListDTO = new BlockListDTO();
+            blockListDTO.setHeight(block.getInteger("height"));
+            Long time = block.getLong("time");
+            Date date= new Date(time * 1000);
+            blockListDTO.setTime(date);
+            blockListDTO.setTxSize(block.getJSONArray("tx").size());
+            blockListDTO.setSizeOnDisk(block.getLong("size"));
+            blockListDTOS.add(blockListDTO);
+            tempBlockhash = block.getString("previousblockhash");
+        }
 
 //        JSONObject chainInfo = bitcoinApi.getChainInfo();
 //        Integer height = chainInfo.getInteger("blocks");
@@ -72,27 +73,21 @@ public class BlockController {
 //            blockListDTO.setTxSize(block.getInteger("nTx"));
 //            blockListDTOS.add(blockListDTO);
 //        }
-//
-//        return blockListDTOS;
 
-        List<Block> blocks = blockMapper.selectRecent();
-        List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
-            BlockListDTO blockListDTO = new BlockListDTO();
-            blockListDTO.setHeight(block.getHeight());
-            blockListDTO.setTime(block.getTime().getTime());
-            blockListDTO.setTxSize(block.getTxSize());
-            blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
-            return blockListDTO;
-        }).collect(Collectors.toList());
+//        List<Block> blocks = blockMapper.selectRecent();
+//        List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
+//            BlockListDTO blockListDTO = new BlockListDTO();
+//            blockListDTO.setHeight(block.getHeight());
+//            blockListDTO.setTime(block.getTime().getTime());
+//            blockListDTO.setTxSize(block.getTxSize());
+//            blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
+//            return blockListDTO;
+//        }).collect(Collectors.toList());
 
         return blockListDTOS;
 
-    }
 
-
-    @GetMapping("/getRecentBlocksById")
-    public List<BlockListDTO> getRecentBlocksById(@RequestParam Integer blockchainId){
-        return null;
+//        bitcoinApi.getBlockHeaders(recentCount,bestBlockhash)
     }
 
     @GetMapping("/getRecentBlocksByNameType")
