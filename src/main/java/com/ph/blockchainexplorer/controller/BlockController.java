@@ -9,6 +9,7 @@ import com.ph.blockchainexplorer.dto.BlockDetailDTO;
 import com.ph.blockchainexplorer.dto.BlockListDTO;
 
 import com.ph.blockchainexplorer.entity.Block;
+import com.ph.blockchainexplorer.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,9 @@ public class BlockController {
 
     @Autowired
     private BlockMapper blockMapper;
+
+    @Autowired
+    private BlockService blockService;
 
     @Value("${blockchain.recentCount}")
     private Integer recentCount;
@@ -75,7 +79,8 @@ public class BlockController {
 //            blockListDTOS.add(blockListDTO);
 //        }
 
-        List<Block> blocks = blockMapper.selectRecent();
+//        List<Block> blocks = blockMapper.selectRecent();
+        List<Block> blocks =blockService.selectRecent();
         List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
             BlockListDTO blockListDTO = new BlockListDTO();
             blockListDTO.setHeight(block.getHeight());
@@ -99,7 +104,9 @@ public class BlockController {
 
     @GetMapping("/getBlockDetailByHash")
     public BlockDetailDTO getBlockDetailByHash(@RequestParam String blockhash){
-        return null;
+        Block block =blockService.getBlockDetai(blockhash);
+        BlockDetailDTO blockDetailDTO = new BlockDetailDTO(block);
+        return blockDetailDTO;
     }
 
     @GetMapping("/getBlockDetailByHeight")
