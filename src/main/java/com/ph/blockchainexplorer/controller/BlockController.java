@@ -8,8 +8,11 @@ import com.ph.blockchainexplorer.dao.BlockMapper;
 import com.ph.blockchainexplorer.dto.BlockDetailDTO;
 import com.ph.blockchainexplorer.dto.BlockListDTO;
 
+import com.ph.blockchainexplorer.dto.TransactionInBlockDTO;
 import com.ph.blockchainexplorer.entity.Block;
+import com.ph.blockchainexplorer.entity.Transaction;
 import com.ph.blockchainexplorer.service.BlockService;
+import com.ph.blockchainexplorer.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +20,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/block")
 @CrossOrigin
 public class BlockController {
+
+
 
     @Autowired
     private BitcoinApi bitcoinApi;
@@ -109,8 +115,6 @@ public class BlockController {
         return blockDetailDTO;
     }
 
-    @GetMapping("/getBlockDetailByHeight")
-    public BlockDetailDTO getBlockDetailByHeight(@RequestParam Integer blockheight){
-        return null;
-    }
+
+
 }

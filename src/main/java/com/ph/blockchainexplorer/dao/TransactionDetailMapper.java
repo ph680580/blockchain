@@ -1,6 +1,7 @@
 package com.ph.blockchainexplorer.dao;
 
 
+import com.ph.blockchainexplorer.dto.TransactionListDTO;
 import com.ph.blockchainexplorer.entity.TransactionDetail;
 import com.ph.blockchainexplorer.entity.TransactionDetailKey;
 import org.apache.ibatis.annotations.Param;
@@ -23,4 +24,5 @@ public interface TransactionDetailMapper {
     int updateByPrimaryKey(TransactionDetail record);
 
     List<TransactionDetail> selectByAddress(@Param("address") String address);
+
 }
