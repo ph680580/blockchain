@@ -34,6 +34,12 @@
     limit 5
   </select>
 
+  <select id="getBlockDetai" resultMap="BaseResultMap">
+    select
+    from block
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from block
     where blockhash = #{blockhash,jdbcType=CHAR}

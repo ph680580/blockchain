@@ -22,4 +22,6 @@ public interface TransactionMapper {
 
     List<Transaction> selectTransaction();
 
+    List<Transaction> selectTransaction2();
+
 }

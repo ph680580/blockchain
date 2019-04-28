@@ -23,10 +23,11 @@
   </select>
 
   <select id="selectTransaction" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from transaction
-    where txid = #{txid,jdbcType=CHAR}
+    select txhash,time,amount from transaction limit 5
+  </select>
+
+  <select id="selectTransaction2" resultMap="BaseResultMap">
+    select txhash,time,amount from transaction
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

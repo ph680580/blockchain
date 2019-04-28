@@ -1,13 +1,12 @@
 package com.ph.blockchainexplorer.controller;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.ph.blockchainexplorer.blockapi.BitcoinApi;
 import com.ph.blockchainexplorer.blockapi.BitcoinJsonRpcClient;
 import com.ph.blockchainexplorer.dao.BlockMapper;
 import com.ph.blockchainexplorer.dto.BlockDetailDTO;
 import com.ph.blockchainexplorer.dto.BlockListDTO;
 
+import com.ph.blockchainexplorer.dto.BlockListDTO2;
 import com.ph.blockchainexplorer.dto.TransactionInBlockDTO;
 import com.ph.blockchainexplorer.entity.Block;
 import com.ph.blockchainexplorer.entity.Transaction;
@@ -115,6 +114,26 @@ public class BlockController {
         return blockDetailDTO;
     }
 
+    @GetMapping("/getBlockDetailByHeight")
+    public BlockDetailDTO getBlockDetailByHeight(@RequestParam Integer blockheight){
+        return null;
+    }
+
+    @GetMapping("/getBlocks")
+    public List<BlockListDTO2> getBlocks(){
+        List<Block> blocks =blockService.selectRecent2();
+        List<BlockListDTO2> blockListDTOS2 = blocks.stream().map(block2 -> {
+            BlockListDTO2 blockListDTO2 = new BlockListDTO2();
+            blockListDTO2.setHeight(block2.getHeight());
+            blockListDTO2.setTime(block2.getTime().getTime());
+            blockListDTO2.setTxSize(block2.getTxSize());
+            blockListDTO2.setSizeOnDisk(block2.getSizeOnDisk());
+            blockListDTO2.setBlockhash(block2.getBlockhash());
+            return blockListDTO2;
+        }).collect(Collectors.toList());
+
+        return blockListDTOS2;
+    }
 
 
 }

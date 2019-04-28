@@ -21,6 +21,16 @@ public class Transaction {
 
     private Double fees;
 
+    private Double amount;
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
     public String getTxid() {
         return txid;
     }

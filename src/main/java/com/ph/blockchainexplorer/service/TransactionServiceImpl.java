@@ -21,4 +21,10 @@ public class TransactionServiceImpl implements TransactionService{
         List<Transaction> transactions = transactionMapper.selectTransaction();
         return transactions;
     }
+
+    @Override
+    public List<Transaction> selectTransaction2() {
+      List<Transaction> transactions2 =  transactionMapper.selectTransaction2();
+        return transactions2;
+    }
 }

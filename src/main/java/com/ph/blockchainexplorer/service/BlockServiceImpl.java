@@ -25,4 +25,12 @@ public class BlockServiceImpl implements BlockService {
         List<Block> blocks =blockMapper.selectRecent();
         return blocks;
     }
+
+    @Override
+    public List<Block> selectRecent2() {
+        List<Block> blocks2 = blockMapper.selectRecent2();
+        return blocks2;
+    }
+
+
 }

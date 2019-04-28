@@ -9,4 +9,6 @@ public interface TransactionService {
 
     List<Transaction> selectTransaction();
 
+    List<Transaction> selectTransaction2();
+
 }
