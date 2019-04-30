@@ -34,6 +34,12 @@
     limit 5
   </select>
 
+  <select id="selectRecent2" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+   </select>
+
   <select id="getBlockDetai" resultMap="BaseResultMap">
     select
     from block

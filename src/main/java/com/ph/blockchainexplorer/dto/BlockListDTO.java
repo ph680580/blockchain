@@ -3,6 +3,16 @@ package com.ph.blockchainexplorer.dto;
 import java.util.Date;
 
 public class BlockListDTO {
+    private String blockhash;
+
+    public String getBlockhash() {
+        return blockhash;
+    }
+
+    public void setBlockhash(String blockhash) {
+        this.blockhash = blockhash;
+    }
+
     private Integer height;
     private Long time;
     private Integer txSize;

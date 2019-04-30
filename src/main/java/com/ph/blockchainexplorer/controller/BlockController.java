@@ -92,6 +92,7 @@ public class BlockController {
             blockListDTO.setTime(block.getTime().getTime());
             blockListDTO.setTxSize(block.getTxSize());
             blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
+            blockListDTO.setBlockhash(block.getBlockhash());
             return blockListDTO;
         }).collect(Collectors.toList());
 

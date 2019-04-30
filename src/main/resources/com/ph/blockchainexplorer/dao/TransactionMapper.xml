@@ -148,6 +148,7 @@
     where txid = #{txid,jdbcType=CHAR}
   </update>
 
+
   <!--custom sql-->
   <update id="truncate">
     truncate table `transaction`;

@@ -1,10 +1,15 @@
 package com.ph.blockchainexplorer.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.ph.blockchainexplorer.blockapi.BitcoinJsonRpcClient;
+import com.ph.blockchainexplorer.dao.TransactionMapper;
+import com.ph.blockchainexplorer.dto.TransactionInBlockDTO;
 import com.ph.blockchainexplorer.dto.TransactionInfoDTO;
 import com.ph.blockchainexplorer.dto.TransactionListDTO;
 import com.ph.blockchainexplorer.dto.TransactionListDTO2;
 import com.ph.blockchainexplorer.entity.Transaction;
 import com.ph.blockchainexplorer.service.TransactionService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +20,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/transaction")
 @CrossOrigin
 public class TransactionController {
+
+    @Autowired
+    private TransactionMapper transactionMapper;
+
+    @Autowired
+    private BitcoinJsonRpcClient bitcoinJsonRpcClient;
 
     @Autowired
     private TransactionService transactionService;
@@ -68,5 +79,15 @@ public class TransactionController {
 
         return transactionListDTOS2;
     }
+
+    @GetMapping("/getTransactionByTxhash")
+    public TransactionInBlockDTO getTransactionByTxhash(@RequestParam String txHash) throws Throwable {
+        JSONObject tx =bitcoinJsonRpcClient.getRawTransaxtion(txHash);
+        return null;
+    }
+
+
+
+
 
 }

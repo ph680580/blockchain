@@ -25,4 +25,6 @@ public interface TransactionDetailMapper {
 
     List<TransactionDetail> selectByAddress(@Param("address") String address);
 
+    List<TransactionDetail> getTransactionDetailList(@Param("txid") String txid);
+
 }
