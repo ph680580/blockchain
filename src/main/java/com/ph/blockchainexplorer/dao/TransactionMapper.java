@@ -6,6 +6,9 @@ import com.ph.blockchainexplorer.entity.Transaction;
 import java.util.List;
 
 public interface TransactionMapper {
+
+    Transaction selectBytxHash(String txHash);
+
     int deleteByPrimaryKey(String txid);
 
     int truncate();

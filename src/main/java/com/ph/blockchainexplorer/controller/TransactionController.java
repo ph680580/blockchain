@@ -46,10 +46,10 @@ public class TransactionController {
         return null;
     }
 
-    @GetMapping("/getTransactionInfoByTxhash")
-    public TransactionInfoDTO getTransactionInfoByTxhash(@RequestParam String txhash){
-        return null;
-    }
+//    @GetMapping("/getTransactionInfoByTxhash")
+//    public TransactionInfoDTO getTransactionInfoByTxhash(@RequestParam String txhash){
+//        return null;
+//    }
 
     @GetMapping("/getTransaction")
     public List<TransactionListDTO> getTransaction(){
@@ -82,11 +82,15 @@ public class TransactionController {
 
     @GetMapping("/getTransactionByTxhash")
     public TransactionInBlockDTO getTransactionByTxhash(@RequestParam String txHash) throws Throwable {
-        JSONObject tx =bitcoinJsonRpcClient.getRawTransaxtion(txHash);
+//        JSONObject tx =bitcoinJsonRpcClient.getRawTransaxtion(txHash);
         return null;
     }
 
-
+    @GetMapping("/getTransactionByTxhash2")
+    public Transaction getTransactionInfoByTxhash(@RequestParam String txHash){
+        Transaction t = transactionMapper.selectBytxHash(txHash);
+        return t;
+    }
 
 
 
