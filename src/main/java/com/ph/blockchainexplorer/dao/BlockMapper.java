@@ -3,6 +3,7 @@ package com.ph.blockchainexplorer.dao;
 
 
 import com.ph.blockchainexplorer.entity.Block;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,4 +26,5 @@ public interface BlockMapper {
 
     List<Block> selectRecent2();
 
+    List<Block> search(@Param("data") String data);
 }

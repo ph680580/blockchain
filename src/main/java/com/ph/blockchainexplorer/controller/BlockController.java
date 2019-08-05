@@ -35,7 +35,7 @@ public class BlockController {
     @Autowired
     private BitcoinJsonRpcClient bitcoinJsonRpcClient;
 
-    @Autowired
+    @Autowired(required = false)
     private BlockMapper blockMapper;
 
     @Autowired
@@ -135,6 +135,48 @@ public class BlockController {
 
         return blockListDTOS2;
     }
+
+    @GetMapping("/search")
+    public List<Block> search(@RequestParam(required = false)String data) throws Exception {
+        if(data!=null&&!"".equals(data+"")){
+            List<Block> search =blockMapper.search(data);
+            return search;
+        }
+        throw new Exception("No Find this message!");
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

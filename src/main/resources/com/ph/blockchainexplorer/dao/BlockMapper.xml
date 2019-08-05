@@ -45,7 +45,6 @@
     from block
   </select>
 
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from block
     where blockhash = #{blockhash,jdbcType=CHAR}
@@ -200,5 +199,17 @@
   <update id="truncate">
     truncate table block;
   </update>
+
+  <select id="search" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    <where>
+      1=1 and
+      <if test="data!=null">
+        instr(blockhash,#{data}) or height=#{data}
+      </if>
+    </where>
+  </select>
 
 </mapper>

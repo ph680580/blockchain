@@ -88,8 +88,8 @@ public class TransactionController {
 
     @GetMapping("/getTransactionByTxhash2")
     public Transaction getTransactionInfoByTxhash(@RequestParam String txHash){
-        Transaction t = transactionMapper.selectBytxHash(txHash);
-        return t;
+        Transaction transaction = transactionMapper.selectBytxHash(txHash);
+        return transaction;
     }
 
 
